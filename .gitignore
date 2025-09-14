@@ -1,0 +1,110 @@
+# Build directories and outputs
+build/
+build_*/
+out/
+cmake-build-*/
+bin/
+Release/
+Debug/
+.claude/
+build_new/
+deploy/
+specs/
+
+# Compiled executables and binaries
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# Compiled object files
+*.slo
+*.lo
+*.o
+*.obj
+*.lib
+*.a
+*.lai
+*.la
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# CMake generated files
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# Visual Studio files
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+
+# IDE files
+.vscode/
+*.code-workspace
+.idea/
+*.cbp
+
+# Documentation files (generated)
+TECHNICAL_DOCUMENTATION.md
+API_REFERENCE.md
+ARCHITECTURE.md
+DEVELOPMENT_GUIDE.md
+BUILD_DEPLOY_GUIDE.md
+
+# Claude Code traces
+.claude/
+CLAUDE.md
+AGENTS.md
+claude-code.md
+
+# Configuration and runtime files
+config.json
+*.json.backup
+logs/
+*.log
+temp/
+monitoring_data/
+sessions/
+
+# Package and distribution files
+*.zip
+*.7z
+*.rar
+*.tar.gz
+dist/
+release/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*.orig
+*~
