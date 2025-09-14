@@ -10,7 +10,7 @@ A lightweight C++ desktop application for automatically accepting League of Lege
 
 - **🚀 LCU API Integration**: Uses Riot's official League Client Update API for reliable ready check detection
 - **⚡ High Performance**: <200ms acceptance latency, <30MB memory usage
-- **🎯 System Tray Integration**: Runs minimized in system tray with context menu controls
+- **🎯 System Tray Integration**: Runs minimized in system tray with custom icon and context menu controls
 - **⌨️ Hotkey Support**: F9 emergency disable and other customizable hotkeys
 - **⚙️ Configurable**: JSON configuration with real-time updates and validation
 - **🔒 Secure & Compliant**: Uses only official APIs, no memory injection or ToS violations
@@ -125,9 +125,10 @@ The application uses only Windows system libraries (no external dependencies):
 
 - **WinHTTP**: For HTTPS requests to LCU API
 - **Win32 API**: For GUI, system tray, and hotkey support
+- **Windows Resource Compiler**: For embedding custom application icon
 - **Standard Libraries**: C++17 STL for core functionality
 
-All dependencies are statically linked into a single executable.
+All dependencies are statically linked into a single executable with embedded resources.
 
 ## Project Structure
 
@@ -135,6 +136,10 @@ All dependencies are statically linked into a single executable.
 League-Auto-Accept/
 ├── src/
 │   └── league_auto_accept_gui.cpp  # Main application source
+├── resources/
+│   ├── app_icon.ico                # Custom application icon
+│   ├── resources.rc                # Windows resource file
+│   └── simple_icon.py              # Icon generator script
 ├── CMakeLists.txt                  # Build configuration
 ├── README.md                       # This file
 └── config.json                     # Runtime configuration (auto-generated)
@@ -145,10 +150,11 @@ League-Auto-Accept/
 The application is built as a single-file C++ program with the following key components:
 
 - **GUI Management**: Windows API for main window and controls
-- **System Tray**: NOTIFYICONDATA for tray integration with context menus
+- **System Tray**: NOTIFYICONDATA for tray integration with context menus and custom icon
 - **LCU Client**: WinHTTP-based client for League API communication
 - **Threading**: Dedicated worker thread for network operations
 - **Configuration**: JSON-based config with runtime validation
+- **Resources**: Windows Resource Compiler for embedding custom application icon
 - **Logging**: Real-time activity logging with GUI display
 
 ## Contributing

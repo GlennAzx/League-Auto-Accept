@@ -15,8 +15,19 @@ set(SOURCES
     src/league_auto_accept_gui.cpp
 )
 
+# Resource files (Windows only)
+if(WIN32)
+    set(RESOURCES
+        resources/resources.rc
+    )
+endif()
+
 # Create executable
-add_executable(LeagueAutoAcceptGUI_Fixed ${SOURCES})
+if(WIN32)
+    add_executable(LeagueAutoAcceptGUI_Fixed ${SOURCES} ${RESOURCES})
+else()
+    add_executable(LeagueAutoAcceptGUI_Fixed ${SOURCES})
+endif()
 
 # Windows specific settings
 if(WIN32)

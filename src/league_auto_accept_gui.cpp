@@ -9,6 +9,9 @@
 #include <thread>
 #include <chrono>
 #include <atomic>
+// Resource definitions
+#define IDI_APP_ICON    101
+#define IDI_TRAY_ICON   102
 
 #pragma comment(lib, "winhttp.lib")
 #pragma comment(lib, "shell32.lib")
@@ -149,8 +152,13 @@ public:
         wc.lpszClassName = CLASS_NAME;
         wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
         wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
-        wc.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
-        app_icon = wc.hIcon;
+        // Load custom application icon from resources
+        app_icon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_APP_ICON));
+        if (!app_icon) {
+            // Fallback to default Windows icon if custom icon fails to load
+            app_icon = LoadIcon(nullptr, IDI_APPLICATION);
+        }
+        wc.hIcon = app_icon;
 
         if (!RegisterClassA(&wc)) {
             return false;
@@ -367,7 +375,9 @@ public:
         nid.uID = 1;
         nid.uFlags = NIF_ICON | NIF_TIP | NIF_MESSAGE;
         nid.uCallbackMessage = WM_TRAY_CALLBACK;
-        nid.hIcon = app_icon;
+        // Use custom tray icon, fallback to app icon
+        HICON tray_icon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_TRAY_ICON));
+        nid.hIcon = tray_icon ? tray_icon : app_icon;
         strcpy_s(nid.szTip, sizeof(nid.szTip), "League Auto-Accept");
 
         Shell_NotifyIconA(NIM_ADD, &nid);
